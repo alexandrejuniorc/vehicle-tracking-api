@@ -1,0 +1,30 @@
+
+@BASE_URL= http://localhost:3000
+@ORIGIN_ID = EkBBdi4gR292LiBWYWxhZGFyZXMsIDEwMDAgLSBDZW50cm8sIEJldGltIC0gTUcsIDM2NDEwLTAyNiwgQnJhc2lsIjESLwoUChIJqWNAFJLDpgARpsy5kCM5OC8Q6AcqFAoSCXkSTsuRw6YAETPuVaoFp4Tx
+@DESTINATION_ID= ChIJTcM3WRKWpgARIBxMZeldEtM
+@ROUTE_ID= 6768a58793dfc2784b21afda
+
+### search for a place
+GET {{ BASE_URL }}/places?text=av amazonas, belo horizonte, 1000
+
+### search for a another place
+GET {{ BASE_URL }}/places?text=av governador valadares, betim, 1000
+
+### directions by origin to destination
+GET {{ BASE_URL }}/directions?originId={{ ORIGIN_ID }}&destinationId={{ DESTINATION_ID }}
+
+### create a route
+POST {{ BASE_URL }}/routes
+Content-Type: application/json
+
+{
+  "name": "Route 1",
+  "source_id": "{{ ORIGIN_ID }}",
+  "destination_id": "{{ DESTINATION_ID }}"
+}
+
+### get all routes
+GET {{ BASE_URL }}/routes
+
+### get a route by id
+GET {{ BASE_URL }}/routes/{{ ROUTE_ID }}

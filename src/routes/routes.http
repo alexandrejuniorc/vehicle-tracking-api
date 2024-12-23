@@ -1,0 +1,20 @@
+@BASE_URL = http://localhost:3000
+@ORIGIN_ID=EkBBdi4gR292LiBWYWxhZGFyZXMsIDEwMDAgLSBDZW50cm8sIEJldGltIC0gTUcsIDM2NDEwLTAyNiwgQnJhc2lsIjESLwoUChIJqWNAFJLDpgARpsy5kCM5OC8Q6AcqFAoSCXkSTsuRw6YAETPuVaoFp4Tx
+@DESTINATION_ID=ChIJTcM3WRKWpgARIBxMZeldEtM
+@ROUTE_ID = ""
+
+### create a route
+POST {{BASE_URL}}/routes
+Content-Type: application/json
+
+{
+  "name": "Route 1",
+  "source_id": "{{ ORIGIN_ID }}",
+  "destination_id": "{{ DESTINATION_ID }}"
+}
+
+### find all routes
+GET {{BASE_URL}}/routes
+
+### find a route
+GET {{BASE_URL}}/routes/{{ROUTE_ID}}

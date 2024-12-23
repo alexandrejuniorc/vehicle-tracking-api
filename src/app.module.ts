@@ -8,8 +8,8 @@ import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
-    PrismaModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
     MapsModule,
     RoutesModule,
   ],
