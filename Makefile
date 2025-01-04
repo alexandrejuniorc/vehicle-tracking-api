@@ -1,34 +1,28 @@
-### DOCKER SETTINGS - BUILD AND CLEAN
+### DOCKER SETTINGS
 
 docker/dev/build:
-	docker compose up --build
+	@docker compose -f docker-compose.dev.yml up --build
 
 docker/dev/rebuild:
-	docker compose down
-	docker compose up --build
+	@docker compose -f docker-compose.dev.yml down
+	@docker compose -f docker-compose.dev.yml up --build
 
-docker/dev/clean:
-	docker compose down --rmi all --volumes --remove-orphans
-
-### DOCKER SETTINGS - START, STOP, AND RESTART
-
-docker/dev/run:
-	docker compose up -d
-
+## Start the development environment helpers: mongodb, api
 docker/dev/start:
-	docker compose up
+	@docker compose -f docker-compose.dev.yml up -d
 
+## Stop the development environment helpers
 docker/dev/stop:
-	docker compose down
+	@docker compose -f docker-compose.dev.yml stop
 
 docker/dev/restart:
-	docker compose down
-	docker compose up
+	@docker compose -f docker-compose.dev.yml down --volumes --remove-orphans
+	@docker compose -f docker-compose.dev.yml up -d
+	@sleep 2
+	@pnpm prisma migrate deploy
 
-### DOCKER SETTINGS - LOGS AND SHELL
-
-docker/dev/logs:
-	docker compose logs -f
+docker/dev/clean:
+	@docker compose -f docker-compose.dev.yml down --rmi all --volumes --remove-orphans
 
 docker/dev/shell:
-	docker compose exec app bash
+	@docker compose -f docker-compose.dev.yml exec app bash

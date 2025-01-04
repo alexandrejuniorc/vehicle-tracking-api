@@ -4,7 +4,8 @@ services:
     volumes:
       - .:/home/node/app
     ports:
-      - 3000:3000
+      - 3333:3333
+    user: root
 
   db:
     build: ./.docker/mongodb
