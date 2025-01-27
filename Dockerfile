@@ -1,8 +1,11 @@
 FROM node:22.8.0-slim
 
-RUN apt update && \
-  apt install openssl procps -y && \
-  npm install -g @nestjs/cli@10.4.8
+# install dependencies
+RUN apt-get update -qq && \
+  apt-get install -qq --no-install-recommends zsh openssl procps -y && \
+  npm install -g pnpm @nestjs/cli@10.4.8 && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 # Criar e mudar permissões para o diretório /home/node/app
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
