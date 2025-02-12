@@ -1,28 +1,28 @@
 ### DOCKER SETTINGS
 
 docker/dev/build:
-	@docker compose -f docker-compose.dev.yml up --build
+	@docker compose up --build
 
 docker/dev/rebuild:
-	@docker compose -f docker-compose.dev.yml down
-	@docker compose -f docker-compose.dev.yml up --build
+	@docker compose down
+	@docker compose up --build
 
 ## Start the development environment helpers: mongodb, api
 docker/dev/start:
-	@docker compose -f docker-compose.dev.yml up -d
+	@docker compose up -d
 
 ## Stop the development environment helpers
 docker/dev/stop:
-	@docker compose -f docker-compose.dev.yml stop
+	@docker compose stop
 
 docker/dev/restart:
-	@docker compose -f docker-compose.dev.yml down --volumes --remove-orphans
-	@docker compose -f docker-compose.dev.yml up -d
+	@docker compose down --volumes --remove-orphans
+	@docker compose up -d
 	@sleep 2
 	@pnpm prisma migrate deploy
 
 docker/dev/clean:
-	@docker compose -f docker-compose.dev.yml down --rmi all --volumes --remove-orphans
+	@docker compose down --rmi all --volumes --remove-orphans
 
 docker/dev/shell:
-	@docker compose -f docker-compose.dev.yml exec app bash
+	@docker compose exec app bash

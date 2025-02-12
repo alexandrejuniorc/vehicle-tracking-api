@@ -1,0 +1,10 @@
+include:
+  - ../.docker/mongodb/docker-compose.yaml
+  - ../.docker/kafka/docker-compose.yaml
+services:
+  nest:
+    build: .
+    volumes:
+      - .:/home/node/app
+    ports:
+      - 3000:3000
